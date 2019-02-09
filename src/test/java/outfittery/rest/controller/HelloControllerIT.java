@@ -1,4 +1,4 @@
-package outfittery;
+package outfittery.rest.controller;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
