@@ -7,12 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 /***
- * This class represents Customer entity with all fields and validations
+ * This class represents Stylist entity with all fields and validations
  * @author peter
  *
  */
 @Entity
-public class Customer {
+public class Stylist {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,10 +23,10 @@ public class Customer {
 	@NotNull
 	private String email;
 
-	protected Customer() {
+	protected Stylist() {
 	}
 
-	public Customer(String name, String email) {
+	public Stylist(String name, String email) {
 		this.name = name;
 		this.email = email;
 	}
@@ -45,7 +45,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return String.format("Customer[id=%d, name='%s', email='%s']", id, name, email);
+		return String.format("Stylist[id=%d, name='%s', email='%s']", id, name, email);
 	}
 
 }

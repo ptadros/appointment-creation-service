@@ -12,40 +12,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import outfittery.model.entity.Customer;
-import outfittery.model.repository.CustomerRepository;
+import outfittery.model.entity.Stylist;
+import outfittery.model.repository.StylistRepository;
 import outfittery.rest.http.exception.validationErrorException;
-
 /***
- * This class contains all endpoints of the Customer resource
+ * This class contains all endpoints of the Stylist resource
  * @author peter
  *
  */
 @RestController
-public class CustomerController {
+public class StylistController {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private StylistRepository stylistRepository;
 
 	/***
 	 * 
-	 * @return list of all customers
+	 * @return list of all stylists
 	 */
-	@GetMapping("/customers")
-	public List<Customer> index() {
-		return (List<Customer>) customerRepository.findAll();
+	@GetMapping("/stylists")
+	public List<Stylist> index() {
+		return (List<Stylist>) stylistRepository.findAll();
 	}
 
 	/***
-	 * Adds a new customer to the system
-	 * @param newCustomer
-	 * @return the created customer with response 201
+	 * Adds a new stylist to the system
+	 * @param newStylist
+	 * @return the created stylist with response 201
 	 */
-	@PostMapping("/customers")
+	@PostMapping("/stylists")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Customer createNewCustomer(@RequestBody @Valid Customer newCustomer) {
-		if (customerRepository.existsByEmail(newCustomer.getEmail()))
+	public Stylist createNewStylist(@RequestBody @Valid Stylist newStylist) {
+		if (stylistRepository.existsByEmail(newStylist.getEmail()))
 			throw new validationErrorException("Email is already registered");
-		return customerRepository.save(newCustomer);
+		return stylistRepository.save(newStylist);
 	}
 }
