@@ -8,5 +8,7 @@ import outfittery.model.entity.Customer;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
-    List<Customer> findByEmail(String lastName);
+    List<Customer> findByEmail(String email);
+    
+    Boolean existsByEmail(String email);
 }
