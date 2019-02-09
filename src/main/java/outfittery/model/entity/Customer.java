@@ -1,9 +1,11 @@
 package outfittery.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Customer {
@@ -11,7 +13,10 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotNull
 	private String name;
+	@Column(unique = true)
+	@NotNull
 	private String email;
 
 	protected Customer() {
