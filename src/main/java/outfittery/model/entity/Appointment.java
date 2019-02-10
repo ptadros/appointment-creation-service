@@ -2,6 +2,7 @@ package outfittery.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Appointment {
 	@NotNull
 	private Date date;
 	@NotNull
+	@Column(name = "from_slot")
 	private String from;
 	@NotNull
 	private String to;
@@ -41,6 +43,7 @@ public class Appointment {
 	public Appointment(Stylist stylist, Customer customer, Date date, String from, String to) {
 		this.stylist = stylist;
 		this.bookedBy = customer;
+		this.date = date;
 		this.from = from;
 		this.to = to;
 	}
