@@ -2,19 +2,21 @@ package outfittery.rest.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import outfittery.AppointmentProperties;
 import outfittery.model.entity.Stylist;
 import outfittery.model.repository.StylistRepository;
 import outfittery.rest.http.exception.validationErrorException;
+import outfittery.service.AppointmentService;
 /***
  * This class contains all endpoints of the Stylist resource
  * @author peter
@@ -25,6 +27,12 @@ public class StylistController {
 
 	@Autowired
 	private StylistRepository stylistRepository;
+
+	@Autowired
+	private AppointmentService appointmentService;
+	
+	@Autowired
+	private AppointmentProperties appointmentProperties;
 
 	/***
 	 * 
@@ -42,9 +50,17 @@ public class StylistController {
 	 */
 	@PostMapping("/stylists")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Stylist createNewStylist(@RequestBody @Valid Stylist newStylist) {
+	public Stylist createNewStylist(@RequestBody Stylist newStylist) {
 		if (stylistRepository.existsByEmail(newStylist.getEmail()))
 			throw new validationErrorException("Email is already registered");
 		return stylistRepository.save(newStylist);
+	}
+	
+	@PostMapping("/stylists/{id}/init-free-slots")
+	public String initStylistCalendar(@PathVariable Long id, @RequestParam Integer days) {
+		Stylist stylist = stylistRepository.findById(id).get();
+		System.out.println(appointmentProperties.getFirstTimeSlot());
+		appointmentService.generateFreeSlots(stylist, days);
+		return "Initiated free slots for Stylist " + stylist.getId() + "Successfully";
 	}
 }
