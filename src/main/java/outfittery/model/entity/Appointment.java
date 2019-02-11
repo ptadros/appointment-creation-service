@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /***
@@ -28,11 +30,13 @@ public class Appointment {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Customer bookedBy;
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	@NotNull
 	@Column(name = "from_slot")
 	private String from;
 	@NotNull
+	@Column(name = "to_slot")
 	private String to;
 	private Date createdAt = new Date();
 	private Date bookedAt;
