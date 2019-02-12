@@ -3,6 +3,7 @@ package outfittery.rest.controller;
 import java.net.URL;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,18 +35,22 @@ public class AppointmentControllerIT {
 	}
 
 	@Test
+	@Ignore("To be tested later")
 	public void testReturnEmptyAppointmentsIfNotAvailable() throws Exception {
 	}
 	
 	@Test
+	@Ignore("To be tested later")
 	public void testReturnAvailableAppointments() throws Exception {
 	}
 	
 	@Test
+	@Ignore("To be tested later")
 	public void testBookAppointmentIfAvailable() throws Exception {
 	}
 	
 	@Test
+	@Ignore("To be tested later")
 	public void testBookAppointmentFailedIfAlreadyBooked() throws Exception {
 	}
 }
