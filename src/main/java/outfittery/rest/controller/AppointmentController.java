@@ -44,11 +44,15 @@ public class AppointmentController {
 	 */
 	@GetMapping("/appointments/available")
 	public List<TimeSlot> getAvailableSlots() {
+		// TODO: add a new method getAvailableSlots to AppointmentService to separate
+		// the the controller from the model layer
 		return appointmentRepository.getAvailableSlots(new Date());
 	}
 
 	/***
-	 * End-point to book an appointment for a customer in a specific date and time slot
+	 * End-point to book an appointment for a customer in a specific date and time
+	 * slot
+	 * 
 	 * @param appointmentBooking
 	 * @return SuccessDto
 	 */

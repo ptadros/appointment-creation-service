@@ -2,6 +2,11 @@ package outfittery.rest.dto;
 
 import java.util.Date;
 
+/***
+ * This class represents the request body of Appointment Booking request
+ * @author peter
+ *
+ */
 public class AppointmentBooking {
 	private Date date;
 	private String fromSlot;

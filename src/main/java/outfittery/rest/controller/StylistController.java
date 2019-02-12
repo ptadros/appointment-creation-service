@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import outfittery.AppointmentProperties;
 import outfittery.model.entity.Stylist;
 import outfittery.model.repository.StylistRepository;
+import outfittery.rest.dto.SuccessDto;
 import outfittery.rest.http.exception.validationErrorException;
 import outfittery.service.AppointmentService;
 /***
- * This class contains all endpoints of the Stylist resource
+ * This class contains all end-points of the Stylist resource
  * @author peter
  *
  */
@@ -57,11 +58,11 @@ public class StylistController {
 	}
 	
 	@PostMapping("/stylists/{id}/init-free-slots")
-	public String initStylistCalendar(@PathVariable Long id, @RequestParam Integer days) {
+	public SuccessDto initStylistCalendar(@PathVariable Long id, @RequestParam Integer days) {
 		// TODO handle exception for invalid Stylist id
 		Stylist stylist = stylistRepository.findById(id).get();
 		System.out.println(appointmentProperties.getFirstTimeSlot());
 		appointmentService.generateFreeSlots(stylist, days);
-		return "Initiated free slots for Stylist " + stylist.getId() + "Successfully";
+		return new SuccessDto("Initiated free slots for Stylist " + stylist.getId() + "Successfully");
 	}
 }

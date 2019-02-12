@@ -1,5 +1,10 @@
 package outfittery.rest.dto;
 
+/***
+ * This is a class for general success response
+ * @author peter
+ *
+ */
 public class SuccessDto {
 	private String message;
 	

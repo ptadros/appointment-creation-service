@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import outfittery.Application;
@@ -63,6 +62,8 @@ public class AppointmentService {
 	}
 	
 	public void bookAppointment(Customer customer, Date date, String fromSlot) {
+		// TODO: modify findAvailableSlotByDateAndTime to return single record instead of list and add a transaction block
+		// between read and update operations to make sure no two concurrent transactions are updating the same record
 		List<Appointment> availableAppointments = appointmentRepoistory.findAvailableSlotByDateAndTime(date, fromSlot);
 		if(availableAppointments.isEmpty())
 			throw new validationErrorException("This booking slot is no longer available");

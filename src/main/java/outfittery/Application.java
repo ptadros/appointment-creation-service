@@ -21,14 +21,11 @@ public class Application {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-            log.info("Let's inspect the beans provided by Spring Boot:");
-
             String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
             for (String beanName : beanNames) {
             	log.info(beanName);
             }
-
         };
     }
 }

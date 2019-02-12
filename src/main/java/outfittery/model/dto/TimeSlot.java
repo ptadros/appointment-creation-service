@@ -1,7 +1,11 @@
 package outfittery.model.dto;
 
 import java.util.Date;
-
+/***
+ * This is a custom TimeSlot object to represent slots from database
+ * @author peter
+ *
+ */
 public class TimeSlot {
 	private Date date;
 	private String from;
