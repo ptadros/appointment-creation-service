@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 /***
@@ -20,6 +22,8 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
+@Table(name = "appointments_date_from_time_booked_by_id", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "date", "from_slot", "booked_by_id" }) })
 public class Appointment {
 
 	@Id

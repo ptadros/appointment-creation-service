@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import outfittery.AppointmentProperties;
 import outfittery.model.entity.Stylist;
 import outfittery.model.repository.StylistRepository;
 import outfittery.rest.dto.SuccessDto;
@@ -32,9 +31,6 @@ public class StylistController {
 	@Autowired
 	private AppointmentService appointmentService;
 	
-	@Autowired
-	private AppointmentProperties appointmentProperties;
-
 	/***
 	 * 
 	 * @return list of all stylists
@@ -61,7 +57,6 @@ public class StylistController {
 	public SuccessDto initStylistCalendar(@PathVariable Long id, @RequestParam Integer days) {
 		// TODO handle exception for invalid Stylist id
 		Stylist stylist = stylistRepository.findById(id).get();
-		System.out.println(appointmentProperties.getFirstTimeSlot());
 		appointmentService.generateFreeSlots(stylist, days);
 		return new SuccessDto("Initiated free slots for Stylist " + stylist.getId() + "Successfully");
 	}

@@ -46,6 +46,7 @@ public class AppointmentController {
 	public List<TimeSlot> getAvailableSlots() {
 		// TODO: add a new method getAvailableSlots to AppointmentService to separate
 		// the the controller from the model layer
+		// TODO: limit availability to max X future days 
 		return appointmentRepository.getAvailableSlots(new Date());
 	}
 
