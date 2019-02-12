@@ -34,5 +34,5 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Long>
      * @return
      */
     @Query("SELECT app FROM Appointment app WHERE app.date = :date and app.from = :fromSlot and app.bookedBy IS NULL")
-    public List<Appointment> findAvailableSlotByDateAndTime(@Param("date") Date date, @Param("fromSlot") String fromSlot, Pageable page);
+    public List<Appointment> findAvailableSlotByDateAndTime(@Param("date") Date date, @Param("fromSlot") String fromSlot);
 }

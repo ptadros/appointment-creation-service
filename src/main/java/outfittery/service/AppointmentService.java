@@ -63,10 +63,11 @@ public class AppointmentService {
 	}
 	
 	public void bookAppointment(Customer customer, Date date, String fromSlot) {
-		Appointment app = appointmentRepoistory.findAvailableSlotByDateAndTime(date, fromSlot, PageRequest.of(1, 1)).get(0);
-		if(app == null)
+		List<Appointment> availableAppointments = appointmentRepoistory.findAvailableSlotByDateAndTime(date, fromSlot);
+		if(availableAppointments.isEmpty())
 			throw new validationErrorException("This booking slot is no longer available");
 		
+		Appointment app = availableAppointments.get(0);
 		app.setBookedAt(new Date());
 		app.setBookedBy(customer);
 		appointmentRepoistory.save(app);
