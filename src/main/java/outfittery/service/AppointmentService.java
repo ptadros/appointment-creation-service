@@ -10,14 +10,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import outfittery.Application;
 import outfittery.AppointmentProperties;
 import outfittery.model.dto.TimeSlot;
 import outfittery.model.entity.Appointment;
+import outfittery.model.entity.Customer;
 import outfittery.model.entity.Stylist;
 import outfittery.model.repository.AppointmentRepository;
+import outfittery.rest.http.exception.validationErrorException;
 
 @Service
 @ConfigurationProperties
@@ -57,6 +60,16 @@ public class AppointmentService {
 
 	public List<TimeSlot> getAvailableSlots() {
 		return appointmentRepoistory.getAvailableSlots(new Date());
+	}
+	
+	public void bookAppointment(Customer customer, Date date, String fromSlot) {
+		Appointment app = appointmentRepoistory.findAvailableSlotByDateAndTime(date, fromSlot, PageRequest.of(1, 1)).get(0);
+		if(app == null)
+			throw new validationErrorException("This booking slot is no longer available");
+		
+		app.setBookedAt(new Date());
+		app.setBookedBy(customer);
+		appointmentRepoistory.save(app);
 	}
 
 }

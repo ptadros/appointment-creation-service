@@ -84,6 +84,14 @@ public class Appointment {
 		return bookedAt;
 	}
 
+	public void setBookedBy(Customer bookedBy) {
+		this.bookedBy = bookedBy;
+	}
+
+	public void setBookedAt(Date bookedAt) {
+		this.bookedAt = bookedAt;
+	}
+
 	@Override
 	public String toString() {
 		return String.format("Appointment[id=%d, Stylist='%d', Date='%s', From='%s', To='%s', bookedBy='%s']", id,

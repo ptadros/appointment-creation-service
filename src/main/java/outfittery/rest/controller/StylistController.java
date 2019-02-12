@@ -58,6 +58,7 @@ public class StylistController {
 	
 	@PostMapping("/stylists/{id}/init-free-slots")
 	public String initStylistCalendar(@PathVariable Long id, @RequestParam Integer days) {
+		// TODO handle exception for invalid Stylist id
 		Stylist stylist = stylistRepository.findById(id).get();
 		System.out.println(appointmentProperties.getFirstTimeSlot());
 		appointmentService.generateFreeSlots(stylist, days);
