@@ -6,6 +6,11 @@
 	gradle build & java -jar build/libs/appointment-booking-service-0.1.0.jar
 ```
 
+### Run tests
+```sh
+	gradle test
+```
+
 ## Examples
 - Create a new customer endpoint
 ```sh
