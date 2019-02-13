@@ -1,6 +1,6 @@
 # appointment-creation-service
 
-## Development Getting Start
+## Development Environment
 ### Build and run the application
 ```sh
 	gradle build & java -jar build/libs/appointment-booking-service-0.1.0.jar
