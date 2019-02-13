@@ -1,0 +1,9 @@
+******************* NOTES *******************
+Due of time limitation, I couldn't do everything required in the test and below are description for what left and what I was planning to do.
+1) I added few unit and integeration tests just as examples. For the limit of time, I couldn't add more. I added signature for test methods for AppointmentController in order to give insight of my test cases.
+2) Request params validations need to be added. I handled some but not all.
+3) Some use cases need to be handled and I added //TODO comments in the code for them.
+4) Response error exceptions need to be handled more. I handled only one as an example.
+5) I added the most important database validation for the models but still some validations can be added (incase you see something missing)
+6) Tests have some redendency code and it can be refactored in a better way if there is enough time.
+7) API DOCS using Swagger is missing. I used it before with Ruby on Rails and the idea is just matter of time to apply it correctly and write proper integration tests for it.
